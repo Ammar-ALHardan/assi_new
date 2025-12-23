@@ -1,9 +1,31 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient, HttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+/* ✅ factory الصحيح */
+export function httpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay())]
+  providers: [
+    provideRouter(routes),
+    provideHttpClient(),
+
+    importProvidersFrom(
+      TranslateModule.forRoot({
+        defaultLanguage: 'en',
+        loader: {
+          provide: TranslateLoader,
+          useFactory: httpLoaderFactory,
+          deps: [HttpClient]
+        }
+      })
+    )
+  ]
 };

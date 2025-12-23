@@ -26,6 +26,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -35,11 +36,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "outputMode": "static"
           },
           "configurations": {
             "production": {
@@ -90,6 +87,7 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -103,5 +101,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "d0310ac0-eea5-4c98-bbf0-99792967bc29"
   }
 }

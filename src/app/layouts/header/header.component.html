@@ -1,0 +1,129 @@
+<header
+  [ngClass]="{
+    'bg-[#f6b5b9] shadow-md': scrolled,
+    'bg-transparent': !scrolled
+  }"
+  class="fixed w-full top-0 left-0 z-50 transition-colors duration-300"
+>
+  <div class="max-w-7xl mx-auto flex justify-between items-center p-4 md:p-6">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <img
+        src="Abuass-removebg-preview.png"
+        alt="Logo"
+        class="w-10 h-10"
+      />
+      <span class="text-xl font-bold text-gray-800 hidden sm:block">
+        CMS
+      </span>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex gap-6 font-medium text-gray-700">
+      <a
+        [routerLink]="['/', lang.lang()]"
+        routerLinkActive="text-slate-900 font-bold"
+        class="hover:text-slate-800 transition"
+      >
+        {{ 'home' | translate }}
+      </a>
+
+      <a
+        [routerLink]="['/', lang.lang(), 'about-us']"
+        routerLinkActive="text-slate-900 font-bold"
+        class="hover:text-slate-800 transition"
+      >
+        {{ 'about-us' | translate }}
+      </a>
+      <a
+        [routerLink]="['/', lang.lang(), 'about-us']"
+        routerLinkActive="text-slate-900 font-bold"
+        class="hover:text-slate-800 transition"
+      >
+        {{ 'contact-us' | translate }}
+      </a>
+      <a
+        [routerLink]="['/', lang.lang(), 'about-us']"
+        routerLinkActive="text-slate-900 font-bold"
+        class="hover:text-slate-800 transition"
+      >
+        {{ 'faqs' | translate }}
+      </a>
+      <a
+        [routerLink]="['/', lang.lang(), 'about-us']"
+        routerLinkActive="text-slate-900 font-bold"
+        class="hover:text-slate-800 transition"
+      >
+        {{ 'services' | translate }}
+      </a>
+    </nav>
+
+    <!-- Right Actions -->
+    <div class="flex items-center gap-6">
+
+      <!-- Language Switch (same UI as flags container) -->
+      <div
+        class="flex items-center border border-[#7c1a1a] px-2 py-1 rounded-md gap-2 cursor-pointer"
+        (click)="switchLang()"
+      >
+        <lucide-icon
+          [name]="icons.globe"
+          class="w-5 h-5 text-gray-700"
+        ></lucide-icon>
+
+        <span class="text-sm font-semibold">
+          {{ lang.lang() === 'en' ? 'AR' : 'EN' }}
+        </span>
+      </div>
+
+      <!-- User -->
+      <div
+        class="border border-[#7c1a1a] px-4 py-1 flex items-center gap-2 rounded-md cursor-pointer"
+      >
+        <lucide-icon
+          [name]="icons.messageCircle"
+          class="w-5 h-5 text-gray-700"
+        ></lucide-icon>
+        <span class="hidden sm:block text-sm font-medium">
+          Chat with Us
+        </span>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="md:hidden text-gray-800"
+        (click)="toggleMobileMenu()"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16">
+          </path>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="mobileMenuOpen" class="md:hidden bg-white shadow-md">
+    <ul class="flex flex-col p-4 gap-4 font-medium">
+      <li>
+        <a
+          [routerLink]="['/', lang.lang()]"
+          (click)="toggleMobileMenu()"
+        >
+          {{ 'home' | translate }}
+        </a>
+      </li>
+      <li>
+        <a
+          [routerLink]="['/', lang.lang(), 'users']"
+          (click)="toggleMobileMenu()"
+        >
+          {{ 'users' | translate }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
